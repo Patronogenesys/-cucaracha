@@ -63,6 +63,16 @@ namespace Сucaracha.Resources {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FinishLine {
+            get {
+                object obj = ResourceManager.GetObject("FinishLine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Сucaracha {
             get {
                 object obj = ResourceManager.GetObject("Сucaracha", resourceCulture);

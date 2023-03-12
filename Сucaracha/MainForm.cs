@@ -6,40 +6,50 @@ namespace Сucaracha
     public partial class MainForm : Form
     {
 
+        private const float SCALE_FACTOR = 5;
         private const int CUCARACHAS_COUNT = 5;
         private const int SPACING = 10;                 // px
-        private const float SCALE_FACTOR = 5f;
+        
+        private FinishLine finishLine = new FinishLine(new Point(1000, 0));
 
         private Graphics graphics;
-        private List<Cucaracha> cucarachas = new List<Cucaracha>(CUCARACHAS_COUNT);
+        private List<IDrawable> drawables = new List<IDrawable>(CUCARACHAS_COUNT + 1);
         public MainForm()
         {
 
             InitializeComponent();
 
             graphics = CreateGraphics();
-
+            
+            
             int height = (int)(Images.Сucaracha.Size.Height / SCALE_FACTOR);
-            int width = (int)(Images.Сucaracha.Size.Width / SCALE_FACTOR);
 
 
             for (int i = 0; i < CUCARACHAS_COUNT; i++)
             {
-                //cucarachas.Add(CucarachaGenerator.Generate(timerUpdate, graphics, new Point(10, i * (height + SPACING)), new Size(width, height)));
-                cucarachas.Add(CucarachaGenerator.Generate(timerUpdate, graphics, new Point(10, i * (height + SPACING)), new Size(width, height)));
-
+                drawables.Add(CucarachaGenerator.Generate(timerUpdate, graphics, new Point(10, i * (height + SPACING))));
             }
-
+            drawables.Add(finishLine);
             timerUpdate.Start();
         }
 
         private void Update(object sender, EventArgs e)
         {
             graphics.Clear(Color.White);
-            foreach (var cucaracha in cucarachas)
+            foreach (var drawable in drawables)
             {
-                cucaracha.Draw(graphics);
+                drawable.Draw(graphics);
+                if (drawable is Cucaracha && finishLine.IsCollidingWith(drawable as Cucaracha))
+                    GameOver(drawable as Cucaracha);
+
             }
+
+            
+        }
+
+        private void GameOver(Cucaracha cucaracha)
+        {
+            timerUpdate.Stop();
         }
     }
 }

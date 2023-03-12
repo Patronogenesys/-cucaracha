@@ -7,7 +7,7 @@ using Сucaracha.Resources;
 
 namespace Сucaracha
 {
-    public class Cucaracha
+    public class Cucaracha : IDrawable
     {
         // Winforms Components
         private System.Windows.Forms.Timer timer;
@@ -27,13 +27,18 @@ namespace Сucaracha
         //Label label;
 
         // Visuals for animation
+        private const float SCALE_FACTOR = 5;
         private Point position;
         private Size size;
         private Graphics graphics;
         private float xUpperShift = 0, xLowerShift = 0;
         private Point[] destPoints = new Point[3];                 // {Upper L, Upper R, Lower L}
 
-        public Cucaracha(System.Windows.Forms.Timer timer, Graphics graphics, float maxVel, float minVel, float velFrequency, float velPhase, Point position, Size size/*, Label label*/)
+
+        public Point Position { get { return position; } }
+        public Size Size { get { return size; } }
+
+        public Cucaracha(System.Windows.Forms.Timer timer, Graphics graphics, float maxVel, float minVel, float velFrequency, float velPhase, Point position/*, Label label*/)
         {
 
             this.timer = timer;
@@ -46,10 +51,13 @@ namespace Сucaracha
             this.velFrequency = velFrequency;
             this.velPhase = velPhase;
 
+            int height = (int)(Images.Сucaracha.Size.Height / SCALE_FACTOR);
+            int width = (int)(Images.Сucaracha.Size.Width / SCALE_FACTOR);
+            this.size = new Size(width, height);
             this.position = position;
-            this.size = size;
 
             //this.label = label;
+
         }
 
         public void Draw(Graphics graphics)
@@ -72,9 +80,9 @@ namespace Сucaracha
             xLowerShift = Shift(timeMS, SHIFT_FREQUENCY, SHIFT_AMPLITUDE);
             xUpperShift = -xLowerShift;
 
-            destPoints[0] = new Point(position.X + (int)xUpperShift, position.Y); ;
-            destPoints[1] = new Point(position.X + (int)(size.Width + xUpperShift), position.Y);
-            destPoints[2] = new Point(position.X + (int)xLowerShift, position.Y + size.Height);
+            destPoints[0] = new Point(Position.X + (int)xUpperShift, Position.Y); ;
+            destPoints[1] = new Point(Position.X + (int)(size.Width + xUpperShift), Position.Y);
+            destPoints[2] = new Point(Position.X + (int)xLowerShift, Position.Y + size.Height);
         }
 
         private float Velocity(long timeMS, float frequency, float phase, float minVel, float maxVel)
