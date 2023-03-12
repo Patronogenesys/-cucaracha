@@ -24,7 +24,7 @@ namespace Сucaracha
         private const float SHIFT_FREQUENCY = 0.25f;    // hz
         private const float SHIFT_AMPLITUDE = 6;        // px
 
-        Label label;
+        //Label label;
 
         // Visuals for animation
         private Point position;
@@ -33,7 +33,7 @@ namespace Сucaracha
         private float xUpperShift = 0, xLowerShift = 0;
         private Point[] destPoints = new Point[3];                 // {Upper L, Upper R, Lower L}
 
-        public Cucaracha(System.Windows.Forms.Timer timer, Graphics graphics, float maxVel, float minVel, float velFrequency, float velPhase, Point position, Size size, Label label)
+        public Cucaracha(System.Windows.Forms.Timer timer, Graphics graphics, float maxVel, float minVel, float velFrequency, float velPhase, Point position, Size size/*, Label label*/)
         {
 
             this.timer = timer;
@@ -49,7 +49,7 @@ namespace Сucaracha
             this.position = position;
             this.size = size;
 
-            this.label = label;
+            //this.label = label;
         }
 
         public void Draw(Graphics graphics)
@@ -66,7 +66,7 @@ namespace Сucaracha
             position.X = (int)x;
 
             //
-            label.Text += $"{dx}\n";
+            //label.Text += $"{dx}\n";
             //
 
             xLowerShift = Shift(timeMS, SHIFT_FREQUENCY, SHIFT_AMPLITUDE);
@@ -75,8 +75,6 @@ namespace Сucaracha
             destPoints[0] = new Point(position.X + (int)xUpperShift, position.Y); ;
             destPoints[1] = new Point(position.X + (int)(size.Width + xUpperShift), position.Y);
             destPoints[2] = new Point(position.X + (int)xLowerShift, position.Y + size.Height);
-
-
         }
 
         private float Velocity(long timeMS, float frequency, float phase, float minVel, float maxVel)
