@@ -25,7 +25,9 @@ namespace Сucaracha
 
             for (int i = 0; i < CUCARACHAS_COUNT; i++)
             {
-                cucarachas.Add(new Cucaracha(timerUpdate, graphics, 0.3f, 0.1f, 0.007f, 1, new Point(10, i * (height + SPACING)), new Size(width, height)/*, label1*/));
+                //cucarachas.Add(CucarachaGenerator.Generate(timerUpdate, graphics, new Point(10, i * (height + SPACING)), new Size(width, height)));
+                cucarachas.Add(CucarachaGenerator.Generate(timerUpdate, graphics, new Point(10, i * (height + SPACING)), new Size(width, height)));
+
             }
 
             timerUpdate.Start();
