@@ -72,13 +72,11 @@ namespace Сucaracha
             xLowerShift = Shift(timeMS, SHIFT_FREQUENCY, SHIFT_AMPLITUDE);
             xUpperShift = -xLowerShift;
 
-            destPoints[0] = position;
+            destPoints[0] = new Point(position.X + (int)xUpperShift, position.Y); ;
             destPoints[1] = new Point(position.X + (int)(size.Width + xUpperShift), position.Y);
             destPoints[2] = new Point(position.X + (int)xLowerShift, position.Y + size.Height);
 
-            graphics.Clear(Color.White);
 
-            Draw(graphics);
         }
 
         private float Velocity(long timeMS, float frequency, float phase, float minVel, float maxVel)
