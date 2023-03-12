@@ -13,16 +13,16 @@ namespace Сucaracha
         private System.Windows.Forms.Timer timer;
 
         // Position
-        private long timeMS;                        // millisec
+        private long timeMS;                            // millisec
         private float x;
         private const int MS_IN_SEC = 1000;
-        private float dx;                           // px/sec^2
-        private float maxVel;                       // px/sec
-        private float minVel;                       // px/sec
-        private float velFrequency;                 // hz
+        private float dx;                               // px/sec^2
+        private float maxVel;                           // px/sec
+        private float minVel;                           // px/sec
+        private float velFrequency;                     // hz - реально хз
         private float velPhase;
         private const float SHIFT_FREQUENCY = 0.25f;    // hz
-        private const float SHIFT_AMPLITUDE = 6;    // px
+        private const float SHIFT_AMPLITUDE = 6;        // px
 
         Label label;
 

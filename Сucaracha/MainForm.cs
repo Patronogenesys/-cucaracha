@@ -2,7 +2,7 @@ using Сucaracha.Resources;
 
 namespace Сucaracha
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
 
         private const int CUCARACHAS_COUNT = 1;
@@ -10,7 +10,7 @@ namespace Сucaracha
         private const float SCALE_FACTOR = 5f;
 
         private List<Cucaracha> cucarachas = new List<Cucaracha>(CUCARACHAS_COUNT);
-        public Form1()
+        public MainForm()
         {
 
             InitializeComponent();
