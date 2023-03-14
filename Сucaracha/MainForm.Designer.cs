@@ -30,39 +30,41 @@
         {
             components = new System.ComponentModel.Container();
             timerUpdate = new System.Windows.Forms.Timer(components);
-            label1 = new Label();
+            btnStart = new Button();
             SuspendLayout();
             // 
             // timerUpdate
             // 
-            timerUpdate.Interval = 10;
+            timerUpdate.Interval = 40;
             timerUpdate.Tick += Update;
             // 
-            // label1
+            // btnStart
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(97, 258);
-            label1.Name = "label1";
-            label1.Size = new Size(118, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Тут 5 тараканов";
+            btnStart.Font = new Font("Comic Sans MS", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStart.Location = new Point(999, 576);
+            btnStart.Name = "btnStart";
+            btnStart.Size = new Size(181, 62);
+            btnStart.TabIndex = 0;
+            btnStart.Text = "Start";
+            btnStart.UseVisualStyleBackColor = true;
+            btnStart.Click += btnStart_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1225, 668);
-            Controls.Add(label1);
+            Controls.Add(btnStart);
             DoubleBuffered = true;
             Name = "MainForm";
             Text = "Cucaracha!!";
+            Paint += MainForm_Paint;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.Timer timerUpdate;
-        private Label label1;
+        private Button btnStart;
     }
 }
